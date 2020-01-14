@@ -3,8 +3,6 @@
         return new yQuery.prototype.init(selector)
     }
 
-
-
     yQuery.fn = yQuery.prototype = {
         constructor: yQuery,
         init: function (selector) {
@@ -35,7 +33,6 @@
             source.splice(0, 1)
         } else {
             target = this
-
         }
         source.forEach(item => {
             Object.keys(item).forEach(key => {
