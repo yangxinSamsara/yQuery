@@ -28,19 +28,39 @@
         let target = [],
             source = [];
         source = [...args]
-        if (this === yQuery) {
+        //$.extend({})  -->给$添加属性
+        //$.fn.extend({}) -->给$.fn添加属性
+        if (args.length === 1) {
+            //$.extend({})
+            target = this;
+        } else {
+            //$.fn.extend({})
             target = args[0];
             source.splice(0, 1)
-        } else {
-            target = this
         }
-        source.forEach(item => {
-            Object.keys(item).forEach(key => {
-                target[key] = item[key]
-            })
-        })
+        Object.assign(target, ...source)
         return target
     }
+
+    // 添加工具类方法
+    yQuery.extend({
+        each() {
+            console.log('each')
+        },
+        ajax() {
+            console.log('ajax')
+        }
+    })
+
+    //添加dom方法
+    yQuery.fn.extend({
+        attr() {
+            console.log('attr方法');
+        },
+        on() {
+            console.log('on方法');
+        }
+    })
 
 
     window.$ = window.yQuery = yQuery;
